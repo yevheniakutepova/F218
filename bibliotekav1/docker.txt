@@ -2,27 +2,30 @@ Instrukcja uruchomienia bazy danych MongoDB (Docker)
 
 Wymagania:
 Zainstalowany Docker
+Zainstalowany Node.js i npm
+VS Code lub inny edytor
 
-Uruchom Docker Desktop.
-
-Otwórz terminal (PowerShell) i przejdź do katalogu projektu.
-
-Uruchom MongoDB poleceniem:
-
+1. Uruchom Docker
+Otwórz Docker Desktop i upewnij się, że działa.
+2. W katalogu głównym projektu (bibliotekav1) stwórz plik .env i wklej:
+MONGO_URI=mongodb://localhost:27017/biblioteka
+3. Uruchom MongoDB w Dockerze
+Otwórz terminal  i wpisz:
 docker run -d --name mongodb -p 27017:27017 -v mongodb_data:/data/db mongo:7.0
-
-Baza danych działa na porcie 27017 i jest dostępna pod adresem:
-
+MongoDB działa teraz lokalnie na porcie 27017.
+Baza danych biblioteka będzie dostępna pod adresem:
 mongodb://localhost:27017/biblioteka
-
-Uruchom aplikację:
-
-npm install
+4. Zainstaluj paczki Node.js
+W terminalu w katalogu projektu wpisz:
+npm install express dotenv mongoose
+5. Uruchom aplikację
 npm start
+Otwórz przeglądarkę i wpisz:
 
-Otwórz w przeglądarce:
+http://localhost:3902
+6. Zatrzymanie bazy danych
 
-http://localhost:3644
+Aby zatrzymać MongoDB w Dockerze, użyj:
 
-Aby zatrzymać bazę danych, użyj polecenia:
-docker-compose down
+docker stop mongodb
+docker rm mongodb
